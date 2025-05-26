@@ -1,4 +1,3 @@
-````markdown
 # Pixel Calculator
 
 A retro-styled pixel calculator built with React + Vite.  
@@ -45,7 +44,6 @@ Implements basic arithmetic (addition, subtraction, multiplication, division, mo
    git clone https://github.com/username/calculator-app.git
    cd calculator-app
    npm install
-````
 
 2. **Development server**
 
