@@ -1,0 +1,180 @@
+/* ------------------------
+   1. Pantalla completa + bg
+   ------------------------ */
+   html {
+    height: 100%;
+  }
+  body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #B4F3BC;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+  .app.vaporwave {
+    background: linear-gradient(135deg, #1a0033 0%, #330066 50%, #660099 100%);
+  }
+  
+  /* ------------------------
+     2. Toggle posición fija
+     ------------------------ */
+  .theme-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  /* ------------------------
+     3. Calculadora
+     ------------------------ */
+  #calculator {
+    background: #1A1A1A;
+    border-radius: 0;
+    padding: 20px;
+    width: 280px;
+    position: relative;
+    box-shadow: 4px 0 0 #000, 8px 0 0 #000,
+                0 4px 0 #000, 0 8px 0 #000,
+                4px 4px 0 #000, 8px 8px 0 #000,
+                12px 12px 0 rgba(0,0,0,0.3);
+  }
+  /* Vaporwave calc override */
+  #calculator.vaporwave {
+    background: linear-gradient(90deg, #ff00ff 0%, #ff00ff 2px, #4a0080 2px, #4a0080 4px, #2d0050 4px, #2d0050 100%),
+                linear-gradient(0deg, #ff00ff 0%, #ff00ff 2px, #4a0080 2px, #4a0080 4px, #2d0050 4px, #2d0050 100%);
+    box-shadow: 4px 0 0 #ff00ff, 8px 0 0 #ff00ff,
+                0 4px 0 #ff00ff, 0 8px 0 #ff00ff,
+                4px 4px 0 #ff00ff, 8px 8px 0 #ff00ff,
+                12px 12px 0 rgba(0,0,0,0.3);
+  }
+  
+  /* Pixel borders */
+  .pixel-border { position: absolute; background: #000; }
+  .border-top    { top:-6px; left:6px; right:6px; height:6px; }
+  .border-bottom { bottom:-6px; left:6px; right:6px; height:6px; }
+  .border-left   { top:6px; bottom:6px; left:-6px; width:6px; }
+  .border-right  { top:6px; bottom:6px; right:-6px; width:6px; }
+  
+  /* ------------------------
+     4. Display
+     ------------------------ */
+  .display-container {
+    margin-bottom:24px;
+    background: linear-gradient(90deg,#000 0%,#000 2px,transparent 2px),
+                linear-gradient(0deg,#000 0%,#000 2px,transparent 2px),
+                #1a1a1a;
+    background-size:4px 4px;
+    padding:16px;
+    position:relative;
+  }
+  .display-container::before,
+  .display-container::after {
+    content:''; position:absolute; left:4px; right:4px; height:4px; background:#000;
+  }
+  .display-container::before { top:-4px; }
+  .display-container::after  { bottom:-4px; }
+  
+  .display {
+    background: radial-gradient(
+        circle at 50% 50%,
+        #264c24 0%,    /* verde claro en el centro */
+        #1f3a1e 50%,   /* verde medio */
+        #0d1f0d 100%   /* verde oscuro en bordes */
+      );
+    border: 2px solid #000;
+    padding:12px;
+    min-height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+  }
+  
+  .display-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 18px;
+    color: #7fff7f;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow:
+      1px 0 0 #000,
+      0 1px 0 #000,
+     -1px 0 0 #000,
+      0 -1px 0 #000,
+      2px 2px 0 rgba(0,0,0,0.5);
+  }
+  
+  /* Vaporwave display overrides */
+  .app.vaporwave .display { background: radial-gradient(circle at 25% 25%,#ff0080 0%,#cc0066 50%,#990033 100%); border-color:#ff00ff; }
+  .app.vaporwave .display-text { color:#00ffff; text-shadow:1px 0 0 #ff00ff,0 1px 0 #ff00ff,-1px 0 0 #ff00ff,0 -1px 0 #ff00ff,2px 2px 0 rgba(255,0,255,0.5); }
+  
+  /* ------------------------
+     5. Botones
+     ------------------------ */
+  .buttons {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+  }
+  .btn {
+    font-family:'Press Start 2P',monospace;
+    font-size:12px;
+    height:48px;
+    border:none;
+    cursor:pointer;
+    letter-spacing:1px;
+    background: linear-gradient(135deg,#fff8dc 0%,#f5e6a3 50%,#e6d080 100%);
+    color:#000;
+    box-shadow:2px 0 0 #000,0 2px 0 #000,2px 2px 0 #000,4px 4px 0 rgba(0,0,0,0.3);
+  }
+  .btn:hover { filter:brightness(1.1); }
+  .btn:active {
+    transform:translate(2px,2px);
+    box-shadow:0 0 0 #000,2px 2px 0 rgba(0,0,0,0.3);
+  }
+  .btn.operation { background:linear-gradient(135deg,#ff8c42 0%,#ff6b1a 50%,#e55100 100%); }
+  .btn.clear     { background:linear-gradient(135deg,#ff4444 0%,#cc0000 50%,#990000 100%); color:#fff; }
+  .btn.zero      { grid-column:span 2; }
+  
+  /* Vaporwave buttons */
+  .app.vaporwave .btn {
+    background:linear-gradient(135deg,#ff0080 0%,#cc0066 50%,#990033 100%);
+    box-shadow:2px 0 0 #ff00ff,0 2px 0 #ff00ff,2px 2px 0 #ff00ff,4px 4px 0 rgba(0,0,0,0.3);
+  }
+  .app.vaporwave .btn.operation { background:linear-gradient(135deg,#00ffff 0%,#00cccc 50%,#009999 100%); }
+  .app.vaporwave .btn.clear     { background:linear-gradient(135deg,#ff00ff 0%,#cc00cc 50%,#990099 100%); }
+  
+  /* ------------------------
+     6. Shake
+     ------------------------ */
+  #calculator.shake {
+    animation:shake 0.2s ease-in-out;
+  }
+  @keyframes shake {
+    0%,100% { transform:translateX(0); }
+    10%,30%,50%,70%,90% { transform:translateX(-3px); }
+    20%,40%,60%,80% { transform:translateX(3px); }
+  }
+  
+  /* ------------------------
+     7. Pixel perfect
+     ------------------------ */
+  #calculator, .display, .btn {
+    image-rendering:pixelated;
+    image-rendering:-moz-crisp-edges;
+    image-rendering:crisp-edges;
+    image-rendering:-webkit-optimize-contrast;
+  }  

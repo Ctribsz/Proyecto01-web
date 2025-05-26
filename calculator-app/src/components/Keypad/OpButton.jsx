@@ -1,7 +1,6 @@
-// src/components/Keypad/DigitButton.jsx
 import React from 'react'
 
-export function DigitButton({ children, onClick, className = '', ...rest }) {
+export function OpButton({ children, onClick, className = '', ...rest }) {
   return (
     <button
       className={className}
